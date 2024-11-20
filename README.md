@@ -36,3 +36,46 @@ Follow these steps to set up and run the project:
    ```bash
    git clone https://github.com/yourusername/cross-account-docker-app.git
    cd cross-account-docker-app
+## Build Docker Image 
+   ```bash
+   docker build -t cross-account-docker-app .
+
+Push Docker Image to AWS ECR
+Log in to AWS and create an ECR repository:
+
+bash
+Copy code
+aws ecr create-repository --repository-name app/cross-account-docker-app --region us-west-2
+Tag the Docker image to match your ECR repository URI:
+
+bash
+Copy code
+docker tag cross-account-docker-app:latest 890742563835.dkr.ecr.us-west-2.amazonaws.com/app/cross-account-docker-app:latest
+Log in to AWS ECR:
+
+bash
+Copy code
+aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 890742563835.dkr.ecr.us-west-2.amazonaws.com
+Push the Docker image to AWS ECR:
+
+bash
+Copy code
+docker push 890742563835.dkr.ecr.us-west-2.amazonaws.com/app/cross-account-docker-app:latest
+Launch the Docker Container on EC2
+Launch an EC2 instance (e.g., t2.micro) with Docker installed.
+
+SSH into your EC2 instance:
+
+bash
+Copy code
+ssh -i "your-key.pem" ec2-user@<EC2-PUBLIC-IP>
+Pull the image from AWS ECR on the EC2 instance:
+
+bash
+Copy code
+docker pull 890742563835.dkr.ecr.us-west-2.amazonaws.com/app/cross-account-docker-app:latest
+Run the Docker container with the appropriate port mappings (e.g., port 80 for Nginx):
+
+bash
+Copy code
+docker run -d -p 80:80 890742563835.dkr.ecr.us-west-2.amazonaws.com/app/cross-account-docker-app:latest

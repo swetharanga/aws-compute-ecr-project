@@ -38,32 +38,32 @@ Follow these steps to set up and run the project:
    ```bash
    docker build -t cross-account-docker-app .
    ```
-##Push Docker Image to AWS ECR
+## Push Docker Image to AWS ECR
 Log in to AWS and create an ECR repository:
 
 ```bash
 aws ecr create-repository --repository-name app/cross-account-docker-app --region us-west-2
 ```
-##Tag the Docker image to match your ECR repository URI:
+## Tag the Docker image to match your ECR repository URI:
 
 ```bash
 
 docker tag cross-account-docker-app:latest 890742563835.dkr.ecr.us-west-2.amazonaws.com/app/cross-account-docker-app:latest
 ```
-##Log in to AWS ECR:
+## Log in to AWS ECR:
 ```bash
 aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 890742563835.dkr.ecr.us-west-2.amazonaws.com
 ```
-###Push the Docker image to AWS ECR:
+## Push the Docker image to AWS ECR:
 
 ```bash
 docker push 890742563835.dkr.ecr.us-west-2.amazonaws.com/app/cross-account-docker-app:latest
 ```
-## Oull the image to launch it
+## Pull the image to launch it
 ```bash
 docker pull 890742563835.dkr.ecr.us-west-2.amazonaws.com/app/cross-account-docker-app:latest
 ```
-##Run the Docker container with the appropriate port mappings (e.g., port 80 for Nginx):
+## Run the Docker container with the appropriate port mappings (e.g., port 80 for Nginx):
 
 ```bash
 

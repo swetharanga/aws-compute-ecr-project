@@ -9,13 +9,11 @@ This project demonstrates how to integrate **AWS ECR (Elastic Container Registry
 In this project, we focus on:
 - **Building a Docker image** for a web application.
 - **Storing the Docker image** in **AWS Elastic Container Registry (ECR)**.
-- **Deploying the Docker container** on an **EC2 instance**.
 - **Serving a simple web page** using **Nginx** inside the Docker container.
 
 ## Technologies Used
 
 - **Docker**: For containerizing the web application.
-- **AWS EC2**: For deploying the Dockerized application on the cloud.
 - **AWS ECR**: For storing and managing Docker images.
 - **Nginx**: For serving content inside the Docker container.
 - **AWS IAM**: For managing access control to ECR.
@@ -39,43 +37,35 @@ Follow these steps to set up and run the project:
 ## Build Docker Image 
    ```bash
    docker build -t cross-account-docker-app .
-
-Push Docker Image to AWS ECR
+   ```
+##Push Docker Image to AWS ECR
 Log in to AWS and create an ECR repository:
 
-bash
-Copy code
+```bash
 aws ecr create-repository --repository-name app/cross-account-docker-app --region us-west-2
-Tag the Docker image to match your ECR repository URI:
+```
+##Tag the Docker image to match your ECR repository URI:
 
-bash
-Copy code
+```bash
+
 docker tag cross-account-docker-app:latest 890742563835.dkr.ecr.us-west-2.amazonaws.com/app/cross-account-docker-app:latest
-Log in to AWS ECR:
-
-bash
-Copy code
+```
+##Log in to AWS ECR:
+```bash
 aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 890742563835.dkr.ecr.us-west-2.amazonaws.com
-Push the Docker image to AWS ECR:
+```
+###Push the Docker image to AWS ECR:
 
-bash
-Copy code
+```bash
 docker push 890742563835.dkr.ecr.us-west-2.amazonaws.com/app/cross-account-docker-app:latest
-Launch the Docker Container on EC2
-Launch an EC2 instance (e.g., t2.micro) with Docker installed.
-
-SSH into your EC2 instance:
-
-bash
-Copy code
-ssh -i "your-key.pem" ec2-user@<EC2-PUBLIC-IP>
-Pull the image from AWS ECR on the EC2 instance:
-
-bash
-Copy code
+```
+## Oull the image to launch it
+```bash
 docker pull 890742563835.dkr.ecr.us-west-2.amazonaws.com/app/cross-account-docker-app:latest
-Run the Docker container with the appropriate port mappings (e.g., port 80 for Nginx):
+```
+##Run the Docker container with the appropriate port mappings (e.g., port 80 for Nginx):
 
-bash
-Copy code
+```bash
+
 docker run -d -p 80:80 890742563835.dkr.ecr.us-west-2.amazonaws.com/app/cross-account-docker-app:latest
+```

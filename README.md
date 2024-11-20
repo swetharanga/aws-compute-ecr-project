@@ -10,7 +10,7 @@ In this project, we focus on:
 - **Building a Docker image** for a web application.
 - **Storing the Docker image** in **AWS Elastic Container Registry (ECR)**.
 - **Serving a simple web page** using **Nginx** inside the Docker container.
-![Image Alt Text]([https://github.com/swetharanga/aws-compute-ecr-project/architecture.png](https://github.com/swetharanga/aws-compute-ecr-project/blob/main/architecture.png))
+![Image Alt Text](https://github.com/swetharanga/aws-compute-ecr-project/blob/main/architecture.png)
 ## Technologies Used
 
 - **Docker**: For containerizing the web application.

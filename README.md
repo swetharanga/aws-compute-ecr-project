@@ -10,6 +10,7 @@ In this project, we focus on:
 - **Building a Docker image** for a web application.
 - **Storing the Docker image** in **AWS Elastic Container Registry (ECR)**.
 - **Serving a simple web page** using **Nginx** inside the Docker container.
+- **Running the container locally and deploying it.
 ![Image Alt Text](https://github.com/swetharanga/aws-compute-ecr-project/blob/main/architecture.png)
 ## Technologies Used
 
@@ -17,6 +18,7 @@ In this project, we focus on:
 - **AWS ECR**: For storing and managing Docker images.
 - **Nginx**: For serving content inside the Docker container.
 - **AWS IAM**: For managing access control to ECR.
+- **AWS CLI**: For accessing the AWS console and running ECR commands.
 
 ## Setup Instructions
 
@@ -24,7 +26,7 @@ Follow these steps to set up and run the project:
 
 ### Prerequisites
 
-- **AWS Account** with access to EC2 and ECR.
+- **AWS Account** with access to IAM User account and ECR.
 - **Docker** installed on your local machine.
 
 ### Clone the Repository
@@ -34,6 +36,13 @@ Follow these steps to set up and run the project:
    ```bash
    git clone https://github.com/yourusername/cross-account-docker-app.git
    cd cross-account-docker-app
+   ```
+## Set AWS CLI
+Set Up AWS CLI Access
+Log in as a Root user and create a user with necessary permissions to access ECR1
+Create an access key for CLI access1
+Run aws configure and enter your AWS access key, secret key, and region
+
 ## Build Docker Image 
    ```bash
    docker build -t cross-account-docker-app .

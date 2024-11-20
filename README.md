@@ -38,10 +38,10 @@ Follow these steps to set up and run the project:
    cd cross-account-docker-app
    ```
 ## Set AWS CLI
-Set Up AWS CLI Access
-Log in as a Root user and create a user with necessary permissions to access ECR1
-Create an access key for CLI access1
-Run aws configure and enter your AWS access key, secret key, and region
+- **Set Up AWS CLI Access
+- **Log in as a Root user and create a user with necessary permissions to access ECR1
+- **Create an access key for CLI access1
+- **Run aws configure and enter your AWS access key, secret key, and region
 
 ## Build Docker Image 
    ```bash
